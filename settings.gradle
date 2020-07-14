@@ -1,2 +1,11 @@
 include ':app'
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+  settingsDir,
+  'eggcial_flutter/.android/include_flutter.groovy'
+))
 rootProject.name = "Eggcial"
+
+include ':eggcial_flutter'
+
+include ':eggcial_flutter'
