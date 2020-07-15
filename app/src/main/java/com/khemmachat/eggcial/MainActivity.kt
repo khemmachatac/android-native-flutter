@@ -6,23 +6,11 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.khemmachat.eggcial.page.HomeFragment
-import io.flutter.embedding.android.FlutterFragment
-import io.flutter.embedding.engine.FlutterEngine
+import com.khemmachat.eggcial.page.MessageFragment
+import com.khemmachat.eggcial.page.ProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : FragmentActivity() {
-    val messageFragment: FlutterFragment by lazy {
-        FlutterFragment
-            .withCachedEngine(EggcialApp.MESSAGE_FLUTTER_ENGINE)
-            .build() as FlutterFragment
-    }
-
-    val profileFragment: FlutterFragment by lazy {
-        FlutterFragment
-            .withCachedEngine(EggcialApp.PROFILE_FLUTTER_ENGINE)
-            .build() as FlutterFragment
-    }
-
     private val pagerAdapter by lazy {
         MainPagerAdapter(this)
     }
@@ -32,6 +20,7 @@ class MainActivity : FragmentActivity() {
         setContentView(R.layout.activity_main)
 
         pager.adapter = pagerAdapter
+        pager.offscreenPageLimit = 3
         pager.isUserInputEnabled = false
         pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -55,6 +44,11 @@ class MainActivity : FragmentActivity() {
         }
     }
 
+    override fun onBackPressed() {
+//        super.onBackPressed()
+        MessageFragment.platform.invokeMethod("remove", null)
+    }
+
     inner class MainPagerAdapter(fragmentActivity: FragmentActivity) :
         FragmentStateAdapter(fragmentActivity) {
         override fun getItemCount(): Int {
@@ -64,8 +58,8 @@ class MainActivity : FragmentActivity() {
         override fun createFragment(position: Int): Fragment {
             return when (position) {
                 0 -> HomeFragment.newInstance()
-                1 -> messageFragment
-                2 -> profileFragment
+                1 -> MessageFragment()
+                2 -> ProfileFragment()
                 else -> throw error("Not found fragment")
             }
         }

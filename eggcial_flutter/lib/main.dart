@@ -1,11 +1,10 @@
-import 'package:eggcial_flutter/pages/MessagePage.dart';
-import 'package:eggcial_flutter/pages/ProfilePage.dart';
+import 'package:eggcial_flutter/profile.dart' as p;
+import 'package:eggcial_flutter/message.dart' as m;
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
-
-void message () => runApp(MessageApp());
-void profile () => runApp(ProfileApp());
+void message() => m.main();
+void profile() => p.main();
 
 class MyApp extends StatelessWidget {
   @override
@@ -15,26 +14,6 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Text("FLUTTER APP"),
       ),
-    );
-  }
-}
-
-class MessageApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(),
-      home: MessagePage(),
-    );
-  }
-}
-
-class ProfileApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(),
-      home: ProfilePage(),
     );
   }
 }
