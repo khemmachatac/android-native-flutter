@@ -8,6 +8,7 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   static const platform = const MethodChannel('com.eggcial/message');
+
   List _messages = List(5);
 
   _ChatPageState() {
@@ -18,7 +19,6 @@ class _ChatPageState extends State<ChatPage> {
         });
         return Future.delayed(Duration(seconds: 0), () => true);
       }
-
       return Future.delayed(Duration(seconds: 0), () => false);
     });
   }
@@ -28,6 +28,7 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Name Surname"),
+        backgroundColor: const Color(0xff6200EE),
       ),
       body: Container(
         child: Column(

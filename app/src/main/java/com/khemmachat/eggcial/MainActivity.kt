@@ -45,7 +45,6 @@ class MainActivity : FragmentActivity() {
     }
 
     override fun onBackPressed() {
-//        super.onBackPressed()
         MessageFragment.platform.invokeMethod("remove", null)
     }
 

@@ -14,6 +14,7 @@ class _MessagePageState extends State<MessagePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Message"),
+        backgroundColor: const Color(0xff6200EE),
       ),
       body: SafeArea(
         child: ListView.builder(
